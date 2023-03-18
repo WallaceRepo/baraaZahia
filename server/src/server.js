@@ -37,12 +37,13 @@ async function connectToPostgres() {
     await sequelize.authenticate()
     console.log('Database connection established.')
     //return sequelize;
-    console.log(db)
+   
   } catch (e) {
     console.log('Database connection failed', e)
     process.exit(1)
   }
-}
+} 
+
 (async () => {
    const result = await connectToPostgres()
    console.log(result)
@@ -56,16 +57,28 @@ async function connectToPostgres() {
   })
 })()
 
-// app.post('/user', async (req, res, next) => {
-//   try {
-//     const model = req.body
-//     await User.create({
-//       name: model.name,
-//     }).then((user) => res.json(user))
-//   } catch (e) {
-//     console.log(e)
-//   }
-// })
+ 
+app.get('/user', async (req, res, next) => {
+  try {
+    // const model = req.body
+    await User.findAll().then((user) => res.json(user))
+  } catch (e) {
+    console.log(e)
+  }
+});
+app.post('/user', async (req, res, next) => {
+  try {
+      const model = req.body;
+      const result = await User.create({
+            first_name: model.firstName,
+            last_name: model.lastName,
+            email: model.email
+         });
+         res.json(result.toJSON());
+        } catch (e) {
+            console.log(e)
+        }
+});
 
 // Endpoint to get json mockdata
 // app.get('/', (req, res) => {
