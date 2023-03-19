@@ -10,13 +10,25 @@ const config = require(__dirname + '/../config/config.js')[env]
 const db = {}
 
 let sequelize;
+
+console.log(config);
+
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  sequelize = new Sequelize(config.host, config.username, config.password, config);
+  sequelize = new Sequelize(config.host, config.username, config.password, {
+    dialect:'postgres',
+    dialectOptions: {
+      ssl: {
+          require: true,
+          rejectUnauthorized: false
+      }
+   },
+  },config);
 }
 
 // const sequelize = new Sequelize(config)
+
 
 fs.readdirSync(__dirname)
   .filter((file) => {

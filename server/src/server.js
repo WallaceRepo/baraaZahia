@@ -10,11 +10,6 @@ const bodyParser = require('body-parser');
 
 const { User, sequelize, db } = require('../sequelize/models');
 
-
-
-// const inventoryRoutes = require('./routes/inventoryRoutes')
-// const ordersRoutes = require('./routes/ordersRoutes')
-
 app.use(bodyParser.json())
 // allow all origins during development
 app.use(
@@ -29,21 +24,17 @@ app.use(express.urlencoded({ extended: true }))
 app.use((req, res, next) => { res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate') 
 next()})
 
-
-
 async function connectToPostgres() {
   console.log('Checking database connection...')
    try {
     await sequelize.authenticate()
     console.log('Database connection established.')
     //return sequelize;
-   
-  } catch (e) {
+    } catch (e) {
     console.log('Database connection failed', e)
     process.exit(1)
   }
 } 
-
 (async () => {
    const result = await connectToPostgres()
    console.log(result)
@@ -56,8 +47,6 @@ async function connectToPostgres() {
     console.log(`Listening on port ${PORT}`)
   })
 })()
-
- 
 app.get('/user', async (req, res, next) => {
   try {
     // const model = req.body
