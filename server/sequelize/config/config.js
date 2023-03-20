@@ -1,4 +1,4 @@
-require("dotenv").config({path: '../.env'})['development'];
+require("dotenv").config({path: '../.env'})
 
 //console.log(require("dotenv").config({path: '../.env'}))
 
@@ -11,7 +11,12 @@ module.exports = {
     port: 5432,
     logging: false,
     dialect: 'postgres',
-    dialectOptions: {},
+    dialectOptions: {
+      "ssl": {
+        "require":true,
+        "rejectUnauthorized":false
+      }
+    },
   },
   test: {
     username: process.env.POSTGRE_DB_USER,

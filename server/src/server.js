@@ -24,29 +24,29 @@ app.use(express.urlencoded({ extended: true }))
 app.use((req, res, next) => { res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate') 
 next()})
 
-async function connectToPostgres() {
-  console.log('Checking database connection...')
-   try {
-    await sequelize.authenticate()
-    console.log('Database connection established.')
-    //return sequelize;
-    } catch (e) {
-    console.log('Database connection failed', e)
-    process.exit(1)
-  }
-} 
-(async () => {
-   const result = await connectToPostgres()
-   console.log(result)
-   //console.log(postgresClient)
-   //config.postgres.client = postgresClient
+// async function connectToPostgres() {
+//   console.log('Checking database connection...')
+//    try {
+//     await sequelize.authenticate()
+//     console.log('Database connection established.')
+//     //return sequelize;
+//     } catch (e) {
+//     console.log('Database connection failed', e)
+//     process.exit(1)
+//   }
+// } 
+// (async () => {
+//    const result = await connectToPostgres()
+//    console.log(result)
+//    //console.log(postgresClient)
+//    //config.postgres.client = postgresClient
    
-   console.log(`Attempting to run server on port ${PORT}`)
+//    console.log(`Attempting to run server on port ${PORT}`)
  
-  app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`)
-  })
-})()
+//   app.listen(PORT, () => {
+//     console.log(`Listening on port ${PORT}`)
+//   })
+// })()
 app.get('/user', async (req, res, next) => {
   try {
     // const model = req.body
@@ -85,6 +85,6 @@ app.post('/user', async (req, res, next) => {
 // app.use('/orders', ordersRoutes)
 // app.use('/orders/single', ordersRoutes)
 
-// app.listen(process.env.PORT || PORT, () => {
-//   console.log(`Server running on port ${PORT}`)
-// })
+app.listen(process.env.PORT || PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})

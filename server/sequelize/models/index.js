@@ -16,18 +16,18 @@ console.log(config);
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  sequelize = new Sequelize(config.host, config.username, config.password, {
-    dialect:'postgres',
-    dialectOptions: {
-      ssl: {
-          require: true,
-          rejectUnauthorized: false
-      }
-   },
-  },config);
+  sequelize = new Sequelize(config.host, config.username, config.password, config);
 }
 
 // const sequelize = new Sequelize(config)
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch((err) => {
+    console.error('Unable to connect to the database:', err);
+  });
 
 
 fs.readdirSync(__dirname)
