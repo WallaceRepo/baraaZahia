@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Manufacturer.init({
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
     full_name: DataTypes.STRING,
     job_title:DataTypes.STRING,
     email: DataTypes.STRING,

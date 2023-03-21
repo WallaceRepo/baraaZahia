@@ -7,7 +7,7 @@ const fs = require('fs')
 const path = require('path');
 const bodyParser = require('body-parser');
 
-const { sequelize, db } = require('../sequelize/models');
+const { sequelize } = require('../sequelize/models');
 const { Manufacturer } = require('../sequelize/models');
 
 app.use(bodyParser.json())
@@ -24,59 +24,63 @@ app.use(express.urlencoded({ extended: true }))
 app.use((req, res, next) => { res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate') 
 next()})
 
-async function assertDatabaseConnectionOk() {
-  console.log(`Checking database connection...`);
-  try {
-    await sequelize.authenticate();
-    console.log("Connection has been established successfully.");
-  } catch (error) {
-    console.error("Unable to connect to the database:", error);
-    process.exit(1);
-  }
-}
+// async function assertDatabaseConnectionOk() {
+//   console.log(`Checking database connection...`);
+//   try {
+//     await sequelize.authenticate();
+//     console.log("Connection has been established successfully.");
+//   } catch (error) {
+//     console.error("Unable to connect to the database:", error);
+//     process.exit(1);
+//   }
+// }
 
-async function getManufacturers() {
-  const manufacturer = await Manufacturer.findAll();
-  return manufacturer;
-}
+// async function getManufacturers() {
+//   const manufacturers = await Manufacturer.findAll();
+//   return manufacturers;
+// }
 
-async function getManufacturerByName(name) {
-  const manufacturer = await Manufacturer.findOne({ where: { name } });
-  return manufacturer;
-}
+// async function getManufacturerByName(company) {
+//   const manufacturer = await Manufacturer.findOne({ where: { company } });
+//   return manufacturer;
+// }
 
-async function init() {
-  await assertDatabaseConnectionOk();
+// async function init() {
+//   // await assertDatabaseConnectionOk();
 
-  let manufacturer = await getManufacturerByName("Aviation Purchasing Platform");
-  console.log(manufacturer);
+//   let manufacturer = await getManufacturerByName("Aviation Purchasing Platform");
+//   console.log(manufacturer);
 
-  manufacturers = await getManufacturers();
-  console.log(manufacturers);
-}
+//   const manufacturers = await getManufacturers();
+//   console.log(manufacturers);
+// }
 
-init();
+// init();
 
-app.get('/user', async (req, res, next) => {
+app.get('/manufacturers', async (req, res, next) => {
   try {
     // const model = req.body
-    await User.findAll().then((user) => res.json(user))
+    await Manufacturer.findAll().then((manufacturers) => res.json(manufacturers))
   } catch (e) {
     console.log(e)
   }
 });
-app.post('/user', async (req, res, next) => {
-  try {
-      const model = req.body;
-      const result = await User.create({
-            first_name: model.firstName,
-            last_name: model.lastName,
-            email: model.email
-         });
-         res.json(result.toJSON());
-        } catch (e) {
-            console.log(e)
-        }
+app.post('/manufacturers', async (req, res, next) => {
+  res.send('Success')
+  // try {
+  //     // const model = req.body;
+  //     await User.create(
+  //       // {
+  //           // first_name: model.firstName,
+  //           // last_name: model.lastName,
+  //           // email: model.email,
+  //          req.body
+  //       //  }
+  //        )
+  //        .then((manufacturers) => res.json(manufacturers))
+  //       } catch (e) {
+  //           console.log(e)
+  //       }
 });
 
 // Endpoint to get json mockdata
