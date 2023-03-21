@@ -2,13 +2,13 @@
 const express = require('express');
 const app = express()
 const PORT = 5000
-//require('dotenv').config({ path: './config/.env' })
 const cors = require('cors')
 const fs = require('fs')
 const path = require('path');
 const bodyParser = require('body-parser');
 
-const { User, sequelize, db } = require('../sequelize/models');
+const { sequelize, db } = require('../sequelize/models');
+const { Manufacturer } = require('../sequelize/models');
 
 app.use(bodyParser.json())
 // allow all origins during development
@@ -24,29 +24,39 @@ app.use(express.urlencoded({ extended: true }))
 app.use((req, res, next) => { res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate') 
 next()})
 
-// async function connectToPostgres() {
-//   console.log('Checking database connection...')
-//    try {
-//     await sequelize.authenticate()
-//     console.log('Database connection established.')
-//     //return sequelize;
-//     } catch (e) {
-//     console.log('Database connection failed', e)
-//     process.exit(1)
-//   }
-// } 
-// (async () => {
-//    const result = await connectToPostgres()
-//    console.log(result)
-//    //console.log(postgresClient)
-//    //config.postgres.client = postgresClient
-   
-//    console.log(`Attempting to run server on port ${PORT}`)
- 
-//   app.listen(PORT, () => {
-//     console.log(`Listening on port ${PORT}`)
-//   })
-// })()
+async function assertDatabaseConnectionOk() {
+  console.log(`Checking database connection...`);
+  try {
+    await sequelize.authenticate();
+    console.log("Connection has been established successfully.");
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+    process.exit(1);
+  }
+}
+
+async function getManufacturers() {
+  const manufacturer = await Manufacturer.findAll();
+  return manufacturer;
+}
+
+async function getManufacturerByName(name) {
+  const manufacturer = await Manufacturer.findOne({ where: { name } });
+  return manufacturer;
+}
+
+async function init() {
+  await assertDatabaseConnectionOk();
+
+  let manufacturer = await getManufacturerByName("Aviation Purchasing Platform");
+  console.log(manufacturer);
+
+  manufacturers = await getManufacturers();
+  console.log(manufacturers);
+}
+
+init();
+
 app.get('/user', async (req, res, next) => {
   try {
     // const model = req.body

@@ -1,42 +1,28 @@
 require("dotenv").config({path: '../.env'})
-
+//require("dotenv").config();
 //console.log(require("dotenv").config({path: '../.env'}))
 
 module.exports = {
   development: {
-    username: process.env.POSTGRE_DB_USER,
-    password: process.env.POSTGRE_DB_PASSWORD,
-    host: process.env.POSTGRE_DB_HOST,
-    dialect: 'postgres',
-    port: 5432,
-    logging: false,
-    dialect: 'postgres',
-    dialectOptions: {
-      "ssl": {
-        "require":true,
-        "rejectUnauthorized":false
-      }
-    },
-  },
-  test: {
-    username: process.env.POSTGRE_DB_USER,
-    password: process.env.POSTGRE_DB_PASSWORD,
-    host: process.env.POSTGRE_DB_HOST,
-    dialect: 'postgres',
-    port: 5432,
-    logging: false,
-    dialect: 'postgres',
+    use_env_variable: "DATABASE_URL",
+    url: process.env.DATABASE_URL,
+    dialect: "postgres",
+    logging: console.log,
+    pool: {
+      max: 3,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
   },
   production: {
-    username: process.env.POSTGRE_DB_USER,
-    password: process.env.POSTGRE_DB_PASSWORD,
-    host: process.env.POSTGRE_DB_HOST,
-    dialect: 'postgres',
-    port: 5432,
-    logging: false,
-    dialect: 'postgres',
-  }
-}
+    use_env_variable: "DATABASE_URL",
+    url: process.env.DATABASE_URL,
+    dialect: "postgres",
+  },
+};
+
+
 
 
 
