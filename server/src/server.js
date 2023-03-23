@@ -6,11 +6,15 @@ const cors = require('cors')
 const fs = require('fs')
 const path = require('path');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 
-const { sequelize } = require('../sequelize/models');
-const { Manufacturer } = require('../sequelize/models');
+//const manufacturer = require('../sequelize/models/manufacturer');
+const manufacturerRoute = require('./routes/manufacturerRoute')
+// const { sequelize } = require('../sequelize/models');
+//const { Manufacturer } = require('../sequelize/models');
 
-app.use(bodyParser.json())
+app.use(morgan('combined'));
+app.use(bodyParser.json());
 // allow all origins during development
 app.use(
   cors({
@@ -19,8 +23,12 @@ app.use(
 )
 // allowing express to read incoming json data
 app.use(express.json())
+
+app.use(bodyParser.urlencoded({extended: true }));
+
 // allowing express to read urlencoded data
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
+
 app.use((req, res, next) => { res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate') 
 next()})
 
@@ -57,31 +65,30 @@ next()})
 
 // init();
 
-app.get('/manufacturers', async (req, res, next) => {
-  try {
-    // const model = req.body
-    await Manufacturer.findAll().then((manufacturers) => res.json(manufacturers))
-  } catch (e) {
-    console.log(e)
-  }
-});
-app.post('/manufacturers', async (req, res, next) => {
-  res.send('Success')
-  // try {
-  //     // const model = req.body;
-  //     await User.create(
-  //       // {
-  //           // first_name: model.firstName,
-  //           // last_name: model.lastName,
-  //           // email: model.email,
-  //          req.body
-  //       //  }
-  //        )
-  //        .then((manufacturers) => res.json(manufacturers))
-  //       } catch (e) {
-  //           console.log(e)
-  //       }
-});
+// app.get('/manufacturers', async (req, res, next) => {
+//   try {
+//      await Manufacturer.findAll().then((manufacturers) => res.json(manufacturers))
+//   } catch (e) {
+//     console.log(e)
+//   }
+// });
+// app.post('/manufacturers', async (req, res, next) => {
+//   //res.send('Success')
+//   try {
+//       // const model = req.body;
+//       await Manufacturer.create(
+//         // {
+//             // first_name: model.firstName,
+//             // last_name: model.lastName,
+//             // email: model.email,
+//            req.body
+//         //  }
+//          )
+//          .then((manufacturers) => res.json(manufacturers))
+//         } catch (e) {
+//             console.log(e)
+//         }
+// });
 
 // Endpoint to get json mockdata
 // app.get('/', (req, res) => {
@@ -99,6 +106,15 @@ app.post('/manufacturers', async (req, res, next) => {
 // app.use('/orders', ordersRoutes)
 // app.use('/orders/single', ordersRoutes)
 
+//app.use('/manufacturers', manufacturerRoute);
+app.get('/manufacturers', manufacturerRoute);
+app.get('/manufacturers/:id', manufacturerRoute);
+app.delete('/manufacturers/:id', manufacturerRoute);
+app.post('/manufacturers', manufacturerRoute);
+app.patch('/manufacturers/:id', manufacturerRoute);
+
 app.listen(process.env.PORT || PORT, () => {
   console.log(`Server running on port ${PORT}`)
-})
+});
+
+module.exports = app;
