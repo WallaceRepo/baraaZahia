@@ -8,8 +8,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
-//const manufacturer = require('../sequelize/models/manufacturer');
-const manufacturerRoute = require('./routes/manufacturerRoute')
+const vendorRoute = require('./routes/vendorRoute');
 // const { sequelize } = require('../sequelize/models');
 //const { Manufacturer } = require('../sequelize/models');
 
@@ -102,16 +101,14 @@ next()})
 //   })
 // })
 
-// app.use('/', inventoryRoutes)
-// app.use('/orders', ordersRoutes)
-// app.use('/orders/single', ordersRoutes)
+app.use(vendorRoute);
+// app.get('/vendors',vendorRoute);
+// app.get('/vendors/:id',vendorRoute);
+// app.delete('/vendors/:id',vendorRoute);
+// app.post('/vendors',vendorRoute);
+// app.patch('/vendors/:id',vendorRoute);
 
-//app.use('/manufacturers', manufacturerRoute);
-app.get('/manufacturers', manufacturerRoute);
-app.get('/manufacturers/:id', manufacturerRoute);
-app.delete('/manufacturers/:id', manufacturerRoute);
-app.post('/manufacturers', manufacturerRoute);
-app.patch('/manufacturers/:id', manufacturerRoute);
+
 
 app.listen(process.env.PORT || PORT, () => {
   console.log(`Server running on port ${PORT}`)
