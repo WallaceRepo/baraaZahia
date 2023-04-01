@@ -19,15 +19,13 @@ module.exports = {
         bill_number: "ewyr45386813461",
         payment_type:"credit_card",
         other_details: "James Anderson, Office supplies, Inc",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        
     },
      {
       bill_number: "3438247-iu",
       payment_type:"credit_card",
       other_details: "Mary Jones, Petco, Inc",
-      createdAt: new Date(),
-      updatedAt: new Date(),
+     
    },
   ]
    )

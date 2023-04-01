@@ -14,99 +14,77 @@ module.exports = {
     */
     await queryInterface.bulkInsert("Categories",[
       { 
-         category_name: "Arts, Crafts & Sewing",
-         createdAt: new Date(),
-         updatedAt: new Date(),
+         category: "Arts, Crafts & Sewing",
+         
       },
       { 
-        category_name: "Automotive Parts & Accessories",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        category: "Automotive Parts & Accessories",
+       
      },
      { 
-      category_name: "Baby",
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      category: "Baby",
+      
    },
    { 
-    category_name: "Beauty & Personal Care",
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    category: "Beauty & Personal Care",
+   
  },
  { 
-  category_name: "Books, Magazines & Newspaper",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Books, Magazines & Newspaper",
+ 
 },   { 
-  category_name: "Camera & Photo",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Camera & Photo",
+  
 },
 { 
-  category_name: "Cell Phones & Accessories",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Cell Phones & Accessories",
+  
 },
 { 
-  category_name: "Clothing, Shoes & Jewelry",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Clothing, Shoes & Jewelry",
+  
 },  { 
-  category_name: "Computers & Accessories",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Computers & Accessories",
+  
 },{ 
-  category_name: "Electronics",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Electronics",
+
 },   { 
-  category_name: "Exersize/Fitness Supplies",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Exersize/Fitness Supplies",
+ 
 },  { 
-  category_name: "Groceries & Gourmet Food",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Groceries & Gourmet Food",
+ 
 },   { 
-  category_name: "Home & kitchen",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Home & kitchen",
+ 
 },     { 
-  category_name: "Health & Household",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Health & Household",
+  
 },    { 
-  category_name: "Industrial & Scientific",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Industrial & Scientific",
+  
 },   { 
-  category_name: "Kitchen & Dining",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Kitchen & Dining",
+
 },  { 
-  category_name: "Office Products",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Office Products",
+ 
 },   { 
-  category_name: "Patio, Lawn & Garden",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Patio, Lawn & Garden",
+ 
 },   { 
-  category_name: "Pet Supplies",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Pet Supplies",
+ 
 },     { 
-  category_name: "Tools & Home Improvement",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Tools & Home Improvement",
+ 
 }, { 
-  category_name: "Toys & Games",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Toys & Games",
+ 
 },   { 
-  category_name: "Watches",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  category: "Watches",
+  
 }
     ]
     )

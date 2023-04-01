@@ -11,14 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.Warehouse)
-      this.belongsTo(models.Product)
-      this.belongsTo(models.ReOrder_rules)
-      this.belongsTo(models.Sales_velocity_lookup)
+      this.belongsTo(models.Warehouse, { foreignKey: 'warehouse_name'})
+      this.belongsTo(models.Product, { foreignKey: 'sku'})
+      this.belongsTo(models.ReOrder_rules,{ targetKey: 'set_interval_time_screening', foreignKey: 'id'})
+      this.belongsTo(models.Sales_velocity_lookup,{ foreignKey: 'velocity'})
     }
   }
   ProductWarehouse.init({
-    SKU: {
+    sku: {
       type: DataTypes.STRING,
       references: {
         model: {
@@ -28,12 +28,12 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     warehouse: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       references: {
         model: {
           tableName:'Warehouses',
         },
-        key:'id'
+        key:'warehouse_name'
       }
     },
     
@@ -63,6 +63,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'ProductWarehouse',
+
   });
   return ProductWarehouse;
 };

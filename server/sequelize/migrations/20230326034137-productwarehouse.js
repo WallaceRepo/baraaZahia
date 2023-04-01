@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('ProductWarehouses', {
-      SKU: {
+      sku: {
         type: Sequelize.STRING,
         references: {
           model: {
@@ -13,12 +13,12 @@ module.exports = {
         }
       },
       warehouse: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         references: {
           model: {
             tableName:'Warehouses',
           },
-          key:'id'
+          key:'warehouse_name'
         }
       },
       on_hand: {

@@ -11,19 +11,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.Product)
+      this.belongsTo(models.Product, {foreignKey:'category'})
     }
   }
   Category.init({
-    category_name: {
+    category: {
       type:DataTypes.STRING,
       primaryKey: true,
       unique:true,
-    },
-    describtion: DataTypes.STRING
+    }
+
   }, {
     sequelize,
     modelName: 'Category',
+    timestamps:false
   });
   return Category;
 };

@@ -15,16 +15,13 @@ module.exports = {
    await queryInterface.bulkInsert(
     "Sales_velocity_lookups",[ 
       { velocity:"slow moving",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+      
       },
       { velocity:"fast moving",
-         createdAt: new Date(),
-         updatedAt: new Date(),
+     
        },
       {velocity:"non moving",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+     
       },
     ]
    )

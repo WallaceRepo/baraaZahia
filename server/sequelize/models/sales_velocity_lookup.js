@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
    
     static associate(models) {
       // define association here
-      this.hasMany(models.ProductWarehouse) 
+      this.hasMany(models.ProductWarehouse, { foreignKey: 'velocity'}) 
     }
   }
   Sales_velocity_lookup.init({
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Sales_velocity_lookup',
-    
+    timestamps:false
   });
   return Sales_velocity_lookup;
 };

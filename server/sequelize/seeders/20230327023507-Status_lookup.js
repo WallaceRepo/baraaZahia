@@ -15,50 +15,31 @@ module.exports = {
    await queryInterface.bulkInsert(
     "Status_lookups",[
       { 
-        name:"Order Pending",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        name:"Ordered",
+     
       },
       { 
-        name:"Order Approved",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        name:"Processing",
+      
       },
       { 
-        name:"Order Canceled",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        name:"Canceled",
+       
+      
       },
       { 
-        name:"Order Refunded",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        name:"Refunded",
+       
       },
       { 
-        name:"Product Delivered",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        name:"Delivered",
+   
       },
       { 
-        name:"Product Shipped",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      { 
-        name:"Product packing",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      { 
-        name:"Order Processing",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      { 
-        name:"Return processing",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
+        name:"Shipped",
+      
+      }
+
     ]
    )
   },

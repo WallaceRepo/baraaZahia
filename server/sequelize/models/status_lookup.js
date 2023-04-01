@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(models.Order)
+      this.hasMany(models.Order, { foreignKey: 'name'})
     }
   }
   Status_lookup.init({
@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Status_lookup',
+    timestamps:false
   });
   return Status_lookup;
 };

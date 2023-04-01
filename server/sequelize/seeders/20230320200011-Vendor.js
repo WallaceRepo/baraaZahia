@@ -23,8 +23,7 @@ module.exports = {
           direct_dial:"+1-(234)-345-8973",
           location:"Australia",
           web_site: "www.motorcompany.com",
-          createdAt: new Date(),
-          updatedAt: new Date(),
+        
         },
         {
             company: "Fielders Manufacturing",
@@ -34,8 +33,7 @@ module.exports = {
             direct_dial:"+1-(234)-7832",
             location:"Australia",
             web_site: "www.fielders.com",
-          createdAt: new Date(),
-          updatedAt: new Date(),
+         
         },
         {
             company: "Aviation Purchasing Platform",
@@ -45,8 +43,7 @@ module.exports = {
             direct_dial:"+1-(234)-345-9090",
             location:"USA",
             web_site: "www.aviation.com",
-          createdAt: new Date(),
-          updatedAt: new Date(),
+        
         },
         {
             company: "Timota Design Manufacturing",
@@ -56,8 +53,7 @@ module.exports = {
             direct_dial:"+1-(234)-345-8989",
             location:"Australia",
             web_site: "www.timota.com",
-          createdAt: new Date(),
-          updatedAt: new Date(),
+         
         },
       ],
       {}

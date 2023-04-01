@@ -3,16 +3,12 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Warehouses', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
+      warehouse_name: {
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING,
+        unique:true
       },
       company: {
-        type: Sequelize.STRING
-      },
-      warehouse_name: {
         type: Sequelize.STRING
       },
       phone: {
@@ -27,6 +23,9 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
+      city: {
+        type: Sequelize.STRING
+      },
       state: {
         type: Sequelize.STRING
       },
@@ -36,14 +35,7 @@ module.exports = {
       country: {
         type: Sequelize.STRING
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+    
     });
   },
   async down(queryInterface, Sequelize) {

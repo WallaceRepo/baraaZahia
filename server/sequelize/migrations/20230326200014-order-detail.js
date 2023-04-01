@@ -15,12 +15,6 @@ module.exports = {
       received_quantity: {
         type: Sequelize.FLOAT
       },
-      checked_in: {
-        type: Sequelize.STRING
-      },
-      checked_in_date: {
-        type: Sequelize.STRING
-      },
       bill_number: {
         type: Sequelize.STRING,
         references: {

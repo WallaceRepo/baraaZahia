@@ -39,12 +39,12 @@ module.exports = {
         type: Sequelize.STRING
       },
       warehouse: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         references:{
           model:{ 
             tableName:'Warehouses'
           },
-          key:"id"
+          key:"warehouse_name"
 
         }
       },

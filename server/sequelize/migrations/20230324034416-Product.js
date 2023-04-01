@@ -25,12 +25,7 @@ module.exports = {
       },
       unit: {
         type: Sequelize.STRING,
-        references: {
-          model: {
-            tableName:'Units',
-          },
-          key:'unit_name'
-        }
+      
       },
       category: {
         type: Sequelize.STRING,
@@ -38,17 +33,10 @@ module.exports = {
           model: {
             tableName:'Categories',
           },
-          key:'category_name' 
+          key:'category' 
         }
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+     
     });
   },
   async down(queryInterface, Sequelize) {

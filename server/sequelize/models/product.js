@@ -11,10 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsToMany(models.Order, {through: models.OrderDetail})
-      this.belongsToMany(models.Warehouse, {through: models.ProductWarehouse})
-      this.belongsTo(models.Unit)
-      this.belongsTo(models.Category)
+      this.belongsToMany(models.Order, {through: models.OrderDetail, uniqueKey:'sku'})
+      this.belongsToMany(models.Warehouse, {through: models.ProductWarehouse, uniqueKey: 'sku'})
+      this.belongsTo(models.Category, { foreignKey: 'category' })
     }
   }
   Product.init({
@@ -28,27 +27,20 @@ module.exports = (sequelize, DataTypes) => {
     product_name: DataTypes.STRING,
     details: DataTypes.STRING,
     price: DataTypes.STRING,
-    unit: {
-      type: DataTypes.STRING,
-      references: {
-        model: {
-          tableName:'Units',
-        },
-        key:'unit_name' 
-      }
-    },
-    category_name: {
+    unit:  DataTypes.STRING,
+    category: {
       type: DataTypes.STRING,
       references: {
         model: {
           tableName:'Categories',
         },
-        key:'category_name' 
+        key:'category' 
        }
     }  
   }, {
     sequelize,
     modelName: 'Product',
+    timestamps:false
   });
   return Product;
 };

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(models.ProductWarehouse)
+      this.hasMany(models.ProductWarehouse, {targetKey: 'set_interval_time_screening', foreignKey: 'id'})
     }
   }
   ReOrder_rules.init({
@@ -28,6 +28,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'ReOrder_rules',
+    timestamps:false
+    
   });
   return ReOrder_rules;
 };

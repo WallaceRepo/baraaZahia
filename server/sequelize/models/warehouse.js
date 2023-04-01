@@ -11,29 +11,29 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsToMany(models.Product, { through: models.ProductWarehouse});
-      this.belongsTo(models.Order);
+      this.belongsToMany(models.Product, { through: models.ProductWarehouse, uniqueKey: "warehouse_name"});
+      this.belongsTo(models.Order, { foreignKey:'warehouse_name'});
     }
   }
   Warehouse.init({
-    id: {
+    warehouse_name: {
     primaryKey:true,
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    autoIncrement: true,
+    type: DataTypes.STRING,
+    unique:true
     },
     company: DataTypes.STRING,
-    warehouse_name: DataTypes.STRING,
     phone: DataTypes.STRING,
     email: DataTypes.STRING,
     zip_code: DataTypes.STRING,
     address: DataTypes.STRING,
+    city:DataTypes.STRING,
     state: DataTypes.STRING,
     manager_name: DataTypes.STRING,
     country: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Warehouse',
+    timestamps:false
   });
   return Warehouse;
 };

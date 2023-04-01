@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.Payment)
-      this.belongsTo(models.Order);
-      this.belongsTo(models.Product)
+      this.belongsTo(models.Payment, {foreignKey:'bill_number'})
+      this.belongsTo(models.Order, { foreignKey: 'id'});
+      this.belongsTo(models.Product, { foreignKey:'sku'})
     }
   }
   OrderDetail.init({
@@ -25,8 +25,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     requested_quantity: DataTypes.FLOAT,
     received_quantity: DataTypes.FLOAT,
-    checked_in: DataTypes.STRING,
-    checked_in_date: DataTypes.STRING,
     bill_number: {
       type:DataTypes.STRING,
       references: {
@@ -57,6 +55,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'OrderDetail',
+  
   });
   return OrderDetail;
 };

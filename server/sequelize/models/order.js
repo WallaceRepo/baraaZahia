@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.Vendor)
-      this.belongsTo(models.Status_lookup)
-      this.belongsToMany(models.Product, { through: models.OrderDetail})
-      this.belongsTo(models.Warehouse )
+      this.belongsTo(models.Vendor, {targetforeignKey: 'id'})
+      this.belongsTo(models.Status_lookup, { foreignKey: 'name'})
+      this.belongsToMany(models.Product, { through: models.OrderDetail, uniqueKey:'sku'})
+      this.belongsTo(models.Warehouse, { foreignKey: 'warehouse_name'} )
     }
   }
   Order.init({
@@ -46,12 +46,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     delivery_lead_time: DataTypes.STRING,
     warehouse:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       references: {
         model:{
           tableName:'Warehouses'
         },
-        key:"id"
+        key:"warehouse_name"
       }
     }
 
